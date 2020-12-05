@@ -580,7 +580,7 @@ def summary_legacy(shap_values, features=None, feature_names=None, max_display=N
     else:
         feature_order = np.flip(np.arange(min(max_display, num_features)), 0)
 
-    row_height = 0.4
+    row_height = 0.8
     if plot_size == "auto":
         pl.gcf().set_size_inches(8, len(feature_order) * row_height + 1.5)
     elif type(plot_size) in (list, tuple):
@@ -591,7 +591,7 @@ def summary_legacy(shap_values, features=None, feature_names=None, max_display=N
 
     if plot_type == "dot":
         for pos, i in enumerate(feature_order):
-            pl.axhline(y=pos, color="#cccccc", lw=0.5, dashes=(1, 5), zorder=-1)
+            #pl.axhline(y=pos, color="#cccccc", lw=0.5, dashes=(1, 5), zorder=-1)
             shaps = shap_values[:, i]
             values = None if features is None else features[:, i]
             inds = np.arange(len(shaps))
@@ -855,14 +855,14 @@ def summary_legacy(shap_values, features=None, feature_names=None, max_display=N
     pl.gca().spines['top'].set_visible(False)
     pl.gca().spines['left'].set_visible(False)
     pl.gca().tick_params(color=axis_color, labelcolor=axis_color)
-    pl.yticks(range(len(feature_order)), [feature_names[i] for i in feature_order], fontsize=13)
+    pl.yticks(range(len(feature_order)), [feature_names[i] for i in feature_order], fontsize=18)
     if plot_type != "bar":
         pl.gca().tick_params('y', length=20, width=0.5, which='major')
-    pl.gca().tick_params('x', labelsize=11)
-    pl.ylim(-1, len(feature_order))
+    pl.gca().tick_params('x', labelsize=18)
+    pl.ylim(0, len(feature_order))
     if plot_type == "bar":
         pl.xlabel(labels['GLOBAL_VALUE'], fontsize=13)
     else:
-        pl.xlabel(labels['VALUE'], fontsize=13)
+        pl.xlabel(labels['VALUE'], fontsize=18)
     if show:
         pl.show()
