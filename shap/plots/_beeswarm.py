@@ -580,7 +580,7 @@ def summary_legacy(shap_values, features=None, feature_names=None, max_display=N
     else:
         feature_order = np.flip(np.arange(min(max_display, num_features)), 0)
 
-    row_height = 0.5
+    row_height = 0.4
     if plot_size == "auto":
         pl.gcf().set_size_inches(8, len(feature_order) * row_height + 1.5)
     elif type(plot_size) in (list, tuple):
@@ -619,7 +619,7 @@ def summary_legacy(shap_values, features=None, feature_names=None, max_display=N
                 ys[ind] = np.ceil(layer / 2) * ((layer % 2) * 2 - 1)
                 layer += 1
                 last_bin = quant[ind]
-            ys *= 0.9 * (row_height / np.max(ys + 1))
+            ys *= 1 * (row_height / np.max(ys + 1))
 
             if features is not None and colored_feature:
                 # trim the color range, but prevent the color range from collapsing
@@ -859,7 +859,7 @@ def summary_legacy(shap_values, features=None, feature_names=None, max_display=N
     if plot_type != "bar":
         pl.gca().tick_params('y', length=20, width=0.5, which='major')
     pl.gca().tick_params('x', labelsize=18)
-    pl.ylim(-1, len(feature_order))
+    pl.ylim(-0.5, len(feature_order))
     if plot_type == "bar":
         pl.xlabel(labels['GLOBAL_VALUE'], fontsize=13)
     else:
