@@ -580,7 +580,7 @@ def summary_legacy(shap_values, features=None, feature_names=None, max_display=N
     else:
         feature_order = np.flip(np.arange(min(max_display, num_features)), 0)
 
-    row_height = 0.8
+    row_height = 0.5
     if plot_size == "auto":
         pl.gcf().set_size_inches(8, len(feature_order) * row_height + 1.5)
     elif type(plot_size) in (list, tuple):
@@ -841,8 +841,8 @@ def summary_legacy(shap_values, features=None, feature_names=None, max_display=N
         m.set_array([0, 1])
         cb = pl.colorbar(m, ticks=[0, 1], aspect=1000)
         cb.set_ticklabels([labels['FEATURE_VALUE_LOW'], labels['FEATURE_VALUE_HIGH']])
-        cb.set_label(color_bar_label, size=12, labelpad=0)
-        cb.ax.tick_params(labelsize=11, length=0)
+        cb.set_label(color_bar_label, size=18, labelpad=0)
+        cb.ax.tick_params(labelsize=18, length=0)
         cb.set_alpha(1)
         cb.outline.set_visible(False)
         bbox = cb.ax.get_window_extent().transformed(pl.gcf().dpi_scale_trans.inverted())
@@ -859,7 +859,7 @@ def summary_legacy(shap_values, features=None, feature_names=None, max_display=N
     if plot_type != "bar":
         pl.gca().tick_params('y', length=20, width=0.5, which='major')
     pl.gca().tick_params('x', labelsize=18)
-    pl.ylim(0, len(feature_order))
+    pl.ylim(-1, len(feature_order))
     if plot_type == "bar":
         pl.xlabel(labels['GLOBAL_VALUE'], fontsize=13)
     else:
